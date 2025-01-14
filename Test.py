@@ -1,4 +1,3 @@
-import random
 import os, re, random, aiofiles, aiohttp, math
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 from youtubesearchpython.__future__ import VideosSearch
@@ -44,10 +43,7 @@ def crop_center_circle(img, output_size, border, crop_scale=1.5):
     mask_border = Image.new("L", (output_size, output_size), 0)
     draw_border = ImageDraw.Draw(mask_border)
     draw_border.ellipse((border, border, output_size - border, output_size - border), fill=255)
-    
-    random_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-    draw_border.ellipse((0, 0, output_size, output_size), outline=random_color, width=border)
-    
+    draw_border.ellipse((0, 0, output_size, output_size), outline="red", width=border)
     result = Image.composite(final_img, Image.new("RGBA", final_img.size, (0, 0, 0, 0)), mask_border)
     return result
 
